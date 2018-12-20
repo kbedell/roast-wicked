@@ -1,0 +1,30 @@
+// Input for Form Styling
+.ingredients-input {
+    min-height: 50px;
+}
+
+.form-control {
+    background-color: $ivory;
+    border: 1px solid $goldenGate;
+}
+
+.form-field {
+    margin-bottom: 15px;
+}
+
+.form-field input, .form-field textarea {
+    background-color: $ivory;
+    border: 1px solid $goldenGate;
+    width: 95%;
+}
+
+.form-label {
+    font-weight: 600;
+}
+
+.remove-button {
+    color: $goldenGate;
+    display: inline-block;
+    height: 100%;
+    vertical-align: top;
+}

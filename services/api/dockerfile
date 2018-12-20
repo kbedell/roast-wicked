@@ -1,0 +1,5 @@
+FROM easternwind/roast-wicked:app
+
+VOLUME [ "/var/www/html" ]
+
+CMD ["php-fpm"]

@@ -1,0 +1,18 @@
+// Buttons
+.btn {
+    background-color: $goldenGate;
+    border-color: $goldenGate;
+    color: $ivory;
+}
+
+.btn:hover {
+    background-color: $ivory;
+    border-color: $goldenGate;
+    color: $goldenGate;
+}
+
+.btn:active {
+    background-color: $ivory;
+    border-color: $prussianBlue;
+    color: $prussianBlue;
+}

@@ -1,0 +1,47 @@
+// Nav Bar Top Styling
+.dropdown-menu {
+    background-color: $ivory;
+    border: 1px solid $goldenGate;
+    color: $goldenGate;
+}
+
+.dropdown a .dropdown-menu {
+    border: none;
+    color: $goldenGate;
+}
+
+.dropdown-item {
+    color: $goldenGate;
+}
+
+.dropdown-item:hover {
+    background-color: $ivory;
+    border: none;
+    color: $prussianBlue;
+}
+
+.navbar {
+    background-color: $goldenGate;
+    color: $ivory;
+}
+
+.navbar-brand {
+    color: $ivory;
+}
+
+.navbar-brand:hover {
+    color: $ivory;
+}
+
+.nav-item > a {
+    border: 2px solid $goldenGate;
+    color: $ivory;
+}
+
+.nav-item > a:hover {
+    border-bottom: 2px solid $ivory;
+}
+
+.margin-bottom-30 {
+    margin-bottom: 30px;
+}

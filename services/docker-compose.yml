@@ -1,0 +1,85 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wicked-roast
+    ports:
+      - '3307:3306'
+    volumes:
+      - mysql-roast:/var/lib/mysql
+
+  redis:
+    image: redis:4.0-alpine
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis:/var/lib/redis/data
+
+  wicked-auth:
+    build: auth/
+    command: ['php', 'artisan', 'serve', '--host=0.0.0.0', '--port=8110']
+    depends_on:
+      - mysql
+    working_dir: /var/www/html
+    env_file:
+      - ./auth/.env
+    volumes:
+      - ./auth:/var/www/html
+    ports:
+      - '8110:8110'
+
+  wicked-app:
+    build:
+      context: app/
+      args:
+        COMPOSER_FLAGS: "--no-scripts --prefer-dist"
+        ENABLE_XDEBUG: "true"
+    depends_on:
+      - mysql
+    working_dir: /var/www/html
+    env_file:
+      - ./app/.env
+    volumes:
+      - ./app:/var/www/html
+
+  wicked-api:
+    build: api/
+    command: ['php', 'artisan', 'serve', '--host=0.0.0.0', '--port=8090']
+    depends_on:
+      - mysql
+    working_dir: /var/www/html
+    env_file:
+      - ./api/.env
+    volumes:
+      - ./api:/var/www/html
+    ports:
+      - '8090:8090'
+
+  wicked-db:
+    build: db/
+    command: ['php', 'artisan', 'serve', '--host=0.0.0.0', '--port=8100']
+    depends_on:
+      - mysql
+    working_dir: /var/www/html
+    env_file:
+      - ./db/.env
+    volumes:
+      - ./db:/var/www/html
+    ports:
+      - '8100:8100'
+
+  web:
+    image: easternwind/roast-wicked:nginx
+    depends_on:
+      - wicked-app
+    ports:
+      - '8080:80'
+    volumes:
+      - ./app:/var/www/html
+
+volumes:
+  mysql-roast:
+  redis:

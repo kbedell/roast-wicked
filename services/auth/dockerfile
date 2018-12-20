@@ -1,0 +1,8 @@
+FROM easternwind/roast-wicked:app
+
+RUN npm install \
+  && npm run prod
+
+VOLUME [ "/var/www/html" ]
+
+CMD ["php-fpm"]
